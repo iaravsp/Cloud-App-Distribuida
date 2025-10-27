@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +26,13 @@ SECRET_KEY = 'django-insecure-dw7cr%=jk4f*%8$&w5!s+0ilu-$*ffuhxshn%d974e@*t_f7a&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cloud_app.wsgi.application'
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -118,7 +122,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Pexels API Key
-PEXELS_API_KEY = 'KB8sRyCfIz5hdMUCQt8SpUClC6I0aM1m7a9zoQr1SkhEw9afeHcdZTZC'  # Substitua com sua chave real
+PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', 'KB8sRyCfIz5hdMUCQt8SpUClC6I0aM1m7a9zoQr1SkhEw9afeHcdZTZC')  # Substitua com sua chave real
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

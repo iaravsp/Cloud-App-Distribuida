@@ -23,5 +23,9 @@ urlpatterns = [
     path('api/upload/', views.upload_image, name='upload'), 
     path('api/list/', views.list_tags, name='list_tags'),
     path('api/show/<str:image_id>/', views.show_image, name='show_image')
+    ,
+    # New endpoints to list images and to fetch image by id (friendly REST style)
+    path('api/images/', views.list_images, name='list_images'),
+    path('api/images/<str:image_id>/', views.show_image, name='image_detail')
     
 ]
